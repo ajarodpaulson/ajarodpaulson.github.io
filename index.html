@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarod Paulson | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of projects by Jarod Paulson."
+    >
+    <style>
+      :root {
+        --bg: #f4efe6;
+        --bg-strong: #e7dcc8;
+        --panel: rgba(255, 252, 246, 0.86);
+        --panel-strong: #fffaf1;
+        --text: #1d2a30;
+        --muted: #4e5f66;
+        --accent: #0b6e69;
+        --accent-strong: #084b48;
+        --border: rgba(29, 42, 48, 0.12);
+        --shadow: 0 18px 60px rgba(33, 47, 53, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(11, 110, 105, 0.18), transparent 32%),
+          radial-gradient(circle at top right, rgba(197, 126, 74, 0.18), transparent 25%),
+          linear-gradient(160deg, #f7f2e9 0%, #ece4d6 52%, #f3eee6 100%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 64px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 0 24px;
+      }
+
+      .brand {
+        font-family: "Iowan Old Style", "Palatino Linotype", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .topbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .topbar nav a,
+      .chip-link {
+        text-decoration: none;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.48);
+        color: var(--muted);
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .topbar nav a:hover,
+      .chip-link:hover,
+      .button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(11, 110, 105, 0.35);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.9fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .hero-main,
+      .hero-side,
+      .project-card,
+      .section-panel {
+        backdrop-filter: blur(10px);
+        background: var(--panel);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-main {
+        border-radius: 30px;
+        padding: 42px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(11, 110, 105, 0.09);
+        color: var(--accent-strong);
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Iowan Old Style", "Palatino Linotype", serif;
+        line-height: 1.02;
+        margin: 0;
+      }
+
+      h1 {
+        margin-top: 18px;
+        font-size: clamp(3.1rem, 7vw, 5.7rem);
+        max-width: 10ch;
+      }
+
+      .hero-copy {
+        margin: 18px 0 0;
+        max-width: 62ch;
+        font-size: 1.08rem;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        border: 1px solid transparent;
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .button-primary {
+        background: var(--accent);
+        color: #f7fbfb;
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.68);
+        color: var(--text);
+        border-color: var(--border);
+      }
+
+      .hero-side {
+        border-radius: 30px;
+        padding: 30px;
+        display: grid;
+        gap: 20px;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .stat {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid rgba(29, 42, 48, 0.08);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.7rem;
+        font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .label {
+        color: var(--accent-strong);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 52px 0 18px;
+      }
+
+      .section-header p,
+      .section-panel p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .projects {
+        display: grid;
+        gap: 18px;
+      }
+
+      .project-card {
+        border-radius: 28px;
+        padding: 28px;
+      }
+
+      .project-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .project-index {
+        min-width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--accent), #1e9088);
+        color: white;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+
+      .project-title-group {
+        flex: 1;
+      }
+
+      .project-title-group p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .meta-row,
+      .tag-row,
+      .action-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .meta-row {
+        margin-top: 16px;
+      }
+
+      .meta-pill,
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.92rem;
+      }
+
+      .meta-pill {
+        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(29, 42, 48, 0.08);
+        color: var(--muted);
+      }
+
+      .tag-row {
+        margin-top: 18px;
+      }
+
+      .tag {
+        background: rgba(11, 110, 105, 0.08);
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .project-points {
+        margin: 20px 0 0;
+        padding-left: 20px;
+        color: var(--text);
+      }
+
+      .project-points li {
+        margin-top: 10px;
+        line-height: 1.6;
+      }
+
+      .action-row {
+        margin-top: 22px;
+      }
+
+      .action-row a {
+        text-decoration: none;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .section-panel {
+        border-radius: 24px;
+        padding: 24px;
+      }
+
+      .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      footer {
+        margin-top: 52px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(29, 42, 48, 0.12);
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .hero,
+        .section-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-main,
+        .hero-side,
+        .project-card {
+          padding: 24px;
+        }
+
+        h1 {
+          max-width: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100% - 20px, 1120px);
+          padding-top: 16px;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .project-top {
+          flex-direction: column;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">Jarod Paulson</div>
+        <nav>
+          <a href="#projects">Projects</a>
+          <a href="#focus">Focus</a>
+          <a href="https://github.com/ajarodpaulson">GitHub</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-main">
+          <div class="eyebrow">Mobile and full-stack product work</div>
+          <h1>Projects built around real workflows.</h1>
+          <p class="hero-copy">
+            I build software that has to hold up in actual use, not just demos. This portfolio
+            highlights four projects across clinical mobile tooling, Android development, SwiftUI,
+            and an AI-assisted public health hackathon build.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View projects</a>
+            <a class="button button-secondary" href="https://github.com/ajarodpaulson">
+              GitHub profile
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div>
+            <div class="label">Current snapshot</div>
+            <p style="margin-top: 10px;">
+              Strongest interest areas: health software, mobile UX, secure workflows, and turning
+              messy real-world input into useful product behavior.
+            </p>
+          </div>
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>4</strong>
+              <span>featured projects on this page</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>mobile stacks: React Native, Android, SwiftUI</span>
+            </div>
+            <div class="stat">
+              <strong>1</strong>
+              <span>health-focused hackathon platform with mapping and AI analysis</span>
+            </div>
+            <div class="stat">
+              <strong>1</strong>
+              <span>clinical workflow app designed around privacy and delayed charting</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="projects">
+        <div class="section-header">
+          <div>
+            <div class="label">Selected work</div>
+            <h2>Featured Projects</h2>
+          </div>
+          <p>Ordered from the project you want surfaced first through the broader web build.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-index">01</div>
+              <div class="project-title-group">
+                <h3>ClinPhoDoc</h3>
+                <p>
+                  A React Native app for clinicians who need to capture clinical photos without
+                  relying on insecure camera-roll workflows. The product is designed around a real
+                  bedside problem: photos are often taken before charting is complete, but default
+                  phone storage and cloud syncing create obvious privacy and workflow issues.
+                </p>
+                <div class="meta-row">
+                  <div class="meta-pill">React Native</div>
+                  <div class="meta-pill">Expo</div>
+                  <div class="meta-pill">TypeScript</div>
+                  <div class="meta-pill">Healthcare workflow</div>
+                </div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <div class="tag">Secure local photo storage</div>
+              <div class="tag">Reminder-based follow-up</div>
+              <div class="tag">Clinical usability</div>
+            </div>
+            <ul class="project-points">
+              <li>
+                Built for the specific workflow where clinicians photograph ventilator or treatment
+                settings at bedside and complete documentation later.
+              </li>
+              <li>
+                Keeps photos inside app-managed local storage rather than a general-purpose photo
+                library, reducing the risk of accidental cloud sync or over-broad app access.
+              </li>
+              <li>
+                Adds reminder and to-do behavior so captured photo sets can be tracked until they
+                have been charted on, making the app useful beyond simple image capture.
+              </li>
+            </ul>
+            <div class="action-row">
+              <span class="chip-link">Private repository</span>
+              <span class="chip-link">Download links shared separately</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-index">02</div>
+              <div class="project-title-group">
+                <h3>MyMovie List</h3>
+                <p>
+                  An Android app focused on responsive movie browsing and reliable offline behavior.
+                  The project uses modern Android architecture to keep API-driven UI state coherent
+                  across nested navigation and asynchronous data flow.
+                </p>
+                <div class="meta-row">
+                  <div class="meta-pill">Kotlin</div>
+                  <div class="meta-pill">Jetpack Compose</div>
+                  <div class="meta-pill">Room</div>
+                  <div class="meta-pill">MVVM</div>
+                </div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <div class="tag">Reactive UI</div>
+              <div class="tag">Offline caching</div>
+              <div class="tag">StateFlow</div>
+            </div>
+            <ul class="project-points">
+              <li>
+                Engineered the UI with Jetpack Compose and MVVM so nested navigation flows and async
+                API state stay synchronized cleanly.
+              </li>
+              <li>
+                Used shared ViewModel scoping and StateFlow to coordinate updates across screens
+                instead of letting state drift between navigation contexts.
+              </li>
+              <li>
+                Added a Room-backed caching layer with custom type converters alongside Retrofit and
+                coroutines to improve performance and make the app more resilient offline.
+              </li>
+            </ul>
+            <div class="action-row">
+              <a class="chip-link" href="https://github.com/ajarodpaulson/my-movie-list">View repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-index">03</div>
+              <div class="project-title-group">
+                <h3>Ingeneious</h3>
+                <p>
+                  A SwiftUI hackathon app built with a five-person team to make gene information more
+                  accessible through a straightforward iOS experience backed by the Wikipedia API.
+                </p>
+                <div class="meta-row">
+                  <div class="meta-pill">Swift</div>
+                  <div class="meta-pill">SwiftUI</div>
+                  <div class="meta-pill">Hackathon build</div>
+                  <div class="meta-pill">API integration</div>
+                </div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <div class="tag">Team collaboration</div>
+              <div class="tag">iOS UI</div>
+              <div class="tag">Wikipedia API</div>
+            </div>
+            <ul class="project-points">
+              <li>
+                Built as a team project, which meant balancing speed, shared ownership, and a
+                presentable end-to-end mobile experience under hackathon constraints.
+              </li>
+              <li>
+                Fetches and presents information for ten genes, turning external API data into a
+                cleaner mobile interface.
+              </li>
+              <li>
+                Represents early iOS work that still shows a clear through-line toward product-driven
+                mobile development.
+              </li>
+            </ul>
+            <div class="action-row">
+              <a class="chip-link" href="https://github.com/ajarodpaulson/ingeneious">View repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-index">04</div>
+              <div class="project-title-group">
+                <h3>CommunityPulse</h3>
+                <p>
+                  Built for Hack the Globe 2026, CommunityPulse helps outreach workers capture
+                  interviews, anonymize sensitive information, analyze social determinants of health,
+                  and visualize community needs on a geographic heatmap.
+                </p>
+                <div class="meta-row">
+                  <div class="meta-pill">Next.js</div>
+                  <div class="meta-pill">TypeScript</div>
+                  <div class="meta-pill">Leaflet</div>
+                  <div class="meta-pill">Ollama</div>
+                </div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <div class="tag">Interview transcription</div>
+              <div class="tag">Privacy-first analysis</div>
+              <div class="tag">Geographic heatmap</div>
+            </div>
+            <ul class="project-points">
+              <li>
+                Uses a two-stage local-LLM pipeline: first to anonymize transcripts and generalize
+                location data, then to extract structured health and socioeconomic signals.
+              </li>
+              <li>
+                Plots analyzed encounter data onto an interactive map so health and policy teams can
+                explore concentrated needs by age, gender, and other filters.
+              </li>
+              <li>
+                Combines speech capture, structured analysis, mapping, and privacy constraints into a
+                single product aimed at improving how outreach interview data is actually used.
+              </li>
+            </ul>
+            <div class="action-row">
+              <a class="chip-link" href="https://github.com/ajarodpaulson/hack-the-globe-2026">View repository</a>
+              <a class="chip-link" href="https://devpost.com/software/hack-the-globe-2026">View Devpost</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="focus">
+        <div class="section-header">
+          <div>
+            <div class="label">Working style</div>
+            <h2>What Connects These Projects</h2>
+          </div>
+        </div>
+
+        <div class="section-grid">
+          <div class="section-panel">
+            <h3>Product lens</h3>
+            <p style="margin-top: 12px;">
+              The strongest through-line here is practical workflow design. These projects are not
+              just tech exercises; they are attempts to remove friction from specific user tasks,
+              from clinical documentation to movie discovery to public-health data collection.
+            </p>
+          </div>
+          <div class="section-panel">
+            <h3>Core stack areas</h3>
+            <div class="skill-list">
+              <div class="tag">React Native</div>
+              <div class="tag">Expo</div>
+              <div class="tag">TypeScript</div>
+              <div class="tag">Kotlin</div>
+              <div class="tag">Jetpack Compose</div>
+              <div class="tag">Room</div>
+              <div class="tag">SwiftUI</div>
+              <div class="tag">Next.js</div>
+              <div class="tag">Leaflet</div>
+              <div class="tag">AWS</div>
+              <div class="tag">Ollama</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>Built as a GitHub Pages portfolio for Jarod Paulson.</div>
+        <a href="https://github.com/ajarodpaulson">github.com/ajarodpaulson</a>
+      </footer>
+    </main>
+  </body>
+</html>
